@@ -20,6 +20,9 @@ actors with a ResNet-18 model.
 | Baseline | 160 samples (10 ms) | 79.38% | **80.56%** |
 | Temporal-resolution ablation | 320 samples (20 ms) | 76.25% | 75.69% |
 
+[Download the baseline checkpoint](https://github.com/yekev/stft-speaker-identification/releases/download/v1.0.0/ravdess-speaker-id-resnet18-hop160.pt)
+or review its [Model Card](MODEL_CARD.md).
+
 The baseline is **19.3× random-chance accuracy** for the 24-way task. Increasing
 the hop from 10 ms to 20 ms reduces the number of temporal frames and lowers
 test accuracy by 4.87 percentage points. Machine-readable metrics and full
@@ -119,11 +122,20 @@ Use `--device cpu` when CUDA is unavailable. To reproduce the ablation, change
 
 ### 5. Evaluate
 
+Download the published baseline checkpoint:
+
+```bash
+gh release download v1.0.0 \
+  --repo yekev/stft-speaker-identification \
+  --pattern "ravdess-speaker-id-resnet18-hop160.pt" \
+  --dir checkpoints
+```
+
 ```bash
 speaker-id-evaluate \
   --dataset-root data/ravdess \
   --split-file splits/split_seed42.json \
-  --checkpoint outputs/baseline/best.pt \
+  --checkpoint checkpoints/ravdess-speaker-id-resnet18-hop160.pt \
   --output-dir outputs/baseline-evaluation
 ```
 
@@ -135,7 +147,7 @@ repository lightweight.
 
 ```bash
 speaker-id-predict data/ravdess/Actor_01/example.wav \
-  --checkpoint outputs/baseline/best.pt \
+  --checkpoint checkpoints/ravdess-speaker-id-resnet18-hop160.pt \
   --top-k 3
 ```
 
@@ -154,6 +166,7 @@ classes, so it must not be interpreted as real-world identity verification.
 ├── splits/                 # Portable deterministic split manifest
 ├── src/speaker_id/         # Reusable data, model, training and inference code
 ├── tests/                  # Unit and smoke tests
+├── MODEL_CARD.md            # Model scope, metrics, risks, and weight license
 ├── environment.yml         # Reproducible Conda environment
 └── pyproject.toml          # Package and command-line entry points
 ```
@@ -185,7 +198,9 @@ as original work. See [Third-party notices](THIRD_PARTY_NOTICES.md).
 
 The source code in this portfolio repository is available under the
 [MIT License](LICENSE). RAVDESS is not included and remains under its own
-CC BY-NC-SA 4.0 terms. If using the project, cite:
+CC BY-NC-SA 4.0 terms. The separately published model weights use the same
+CC BY-NC-SA 4.0 license because they were trained on RAVDESS. If using the
+project, cite:
 
 > Livingstone, S. R., & Russo, F. A. (2018). The Ryerson Audio-Visual Database
 > of Emotional Speech and Song (RAVDESS). *PLOS ONE, 13*(5), e0196391.
