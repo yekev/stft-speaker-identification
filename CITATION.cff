@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use this implementation, please also cite the RAVDESS dataset."
+title: "STFT Speaker Identification"
+type: software
+authors:
+  - family-names: "Yao"
+    given-names: "Kevin"
+version: 1.0.0
+date-released: 2026-09-18
+license: MIT
+references:
+  - type: dataset
+    title: "The Ryerson Audio-Visual Database of Emotional Speech and Song (RAVDESS)"
+    authors:
+      - family-names: "Livingstone"
+        given-names: "Steven R."
+      - family-names: "Russo"
+        given-names: "Frank A."
+    doi: "10.5281/zenodo.1188976"

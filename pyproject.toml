@@ -1,0 +1,42 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ravdess-speaker-id"
+version = "1.0.0"
+description = "Closed-set speaker identification with log-STFT features and ResNet-18"
+readme = "README.md"
+requires-python = ">=3.10,<3.11"
+license = { file = "LICENSE" }
+authors = [{ name = "Kevin Yao" }]
+keywords = ["speaker-identification", "audio", "stft", "resnet", "pytorch"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Science/Research",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3.10",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+  "torch==2.1.2",
+  "torchaudio==2.1.2",
+  "torchvision==0.16.2",
+  "numpy==1.26.4",
+  "matplotlib==3.10.9",
+  "scikit-learn==1.7.2",
+  "soundfile==0.13.1",
+  "tqdm==4.67.3",
+]
+
+[project.scripts]
+speaker-id-prepare = "speaker_id.cli:prepare_main"
+speaker-id-train = "speaker_id.cli:train_main"
+speaker-id-evaluate = "speaker_id.cli:evaluate_main"
+speaker-id-predict = "speaker_id.cli:predict_main"
+
+[project.urls]
+Dataset = "https://zenodo.org/records/1188976"
+
+[tool.setuptools.packages.find]
+where = ["src"]

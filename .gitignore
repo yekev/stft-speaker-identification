@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Environments and editors
+.venv/
+venv/
+.idea/
+.vscode/
+.ipynb_checkpoints/
+
+# Local data and generated artifacts
+data/
+checkpoints/
+outputs/
+*.pt
+*.pth
+*.onnx
+
+# Course submission artifacts
+submission/
+submission_check/
+*_submission.zip
+*_submission.pdf
+
+# OS files
+.DS_Store
+Thumbs.db
