@@ -32,15 +32,7 @@ classification reports are available in [`results/`](results/).
 
 ## System design
 
-```mermaid
-flowchart LR
-    A[48 kHz WAV] --> B[Mono + peak normalization]
-    B --> C[Resample to 16 kHz]
-    C --> D[Crop / pad to 3 seconds]
-    D --> E[Log-power STFT]
-    E --> F[1-channel ResNet-18]
-    F --> G[24 actor probabilities]
-```
+![Static speaker-identification processing pipeline](assets/system-pipeline.svg)
 
 The baseline uses a 25 ms Hann window, a 10 ms hop, and a 512-point FFT. A
 three-second clip becomes a `1 × 257 × 301` spectrogram.
